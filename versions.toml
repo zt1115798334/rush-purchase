@@ -1,0 +1,44 @@
+[versions]
+hutool_all_version = "5.8.28"
+fastjson_version = "2.0.51"
+guava_version = "33.2.1-jre"
+mapstruct_version = "1.5.5.Final"
+commons_compress_version = "1.26.0"
+
+kotlin_logging_version = "6.0.9"
+kotlinx_datetime_version = "0.6.0"
+kotlinx_serialization_json_version = "1.7.0"
+query_dsl_version = "5.0.0"
+minio_version = "8.5.11"
+blaze_persistence_version = "1.6.11"
+jakarta_persistence_api_version = "3.1.0"
+shiro_version = "2.0.1"
+shiro_redis_version = "3.3.1"
+springdoc_version="2.5.0"
+
+[libraries]
+hutool_all_library = { module = "cn.hutool:hutool-all", version.ref = "hutool_all_version" }
+fastjson_library = { module = "com.alibaba:fastjson", version.ref = "fastjson_version" }
+guava_library = { module = "com.google.guava:guava", version.ref = "guava_version" }
+mapstruct_library = { module = "org.mapstruct:mapstruct", version.ref = "mapstruct_version" }
+mapstruct_processor_library = { module = "org.mapstruct:mapstruct-processor", version.ref = "mapstruct_version" }
+commons_compress_library = { module = "org.apache.commons:commons-compress", version.ref = "commons_compress_version" }
+minio_library = { module = "io.minio:minio", version.ref = "minio_version" }
+
+kotlin_logging_library = { module = "io.github.oshai:kotlin-logging", version.ref = "kotlin_logging_version" }
+kotlinx_datetime_library = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx_datetime_version" }
+kotlinx_serialization_json_library = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx_serialization_json_version" }
+querydsl_core_library = { module = "com.querydsl:querydsl-core", version.ref = "query_dsl_version" }
+querydsl_jpa_library = { module = "com.querydsl:querydsl-jpa", version.ref = "query_dsl_version" }
+querydsl_apt_library = { module = "com.querydsl:querydsl-apt", version.ref = "query_dsl_version" }
+blaze_persistence_core_api_jakarta_library = { module = "com.blazebit:blaze-persistence-core-api-jakarta", version.ref = "blaze_persistence_version" }
+blaze_persistence_core_impl_jakarta_library = { module = "com.blazebit:blaze-persistence-core-impl-jakarta", version.ref = "blaze_persistence_version" }
+blaze_persistence_integration_hibernate_library = { module = "com.blazebit:blaze-persistence-integration-hibernate-6.2", version.ref = "blaze_persistence_version" }
+blaze_persistence_integration_querydsl_expressions_jakarta_library = { module = "com.blazebit:blaze-persistence-integration-querydsl-expressions-jakarta", version.ref = "blaze_persistence_version" }
+jakarta_persistence_api_library = { module = "jakarta.persistence:jakarta.persistence-api", version.ref = "jakarta_persistence_api_version" }
+shiro_core_library = { module = "org.apache.shiro:shiro-core", version.ref = "shiro_version" }
+shiro_web_library = { module = "org.apache.shiro:shiro-web", version.ref = "shiro_version" }
+shiro_spring_library = { module = "org.apache.shiro:shiro-spring", version.ref = "shiro_version" }
+shiro_redis_library = { module = "org.crazycake:shiro-redis", version.ref = "shiro_redis_version" }
+springdoc_openapi_starter_webmvc_ui_library = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "springdoc_version" }
+springdoc_openapi_starter_webmvc_api_library = { module = "org.springdoc:springdoc-openapi-starter-webmvc-api", version.ref = "springdoc_version" }
