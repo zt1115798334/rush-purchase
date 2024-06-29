@@ -51,7 +51,7 @@ class NauMinioAutoConfiguration {
         CustomMinioClient::class
     )
     @ConditionalOnMissingBean(MinioTemplate::class)
-    fun minioTemplate(@Autowired customMinioClient: CustomMinioClient?): MinioTemplate {
+    fun minioTemplate(@Autowired customMinioClient: CustomMinioClient): MinioTemplate {
         return MinioTemplate(customMinioClient)
     }
 

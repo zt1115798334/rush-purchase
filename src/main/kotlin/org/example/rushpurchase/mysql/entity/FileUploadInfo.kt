@@ -39,6 +39,7 @@ open class FileUploadInfo {
     @NotNull
     @Lob
     @Column(name = "file_status", nullable = false)
+    @Enumerated(value = EnumType.STRING)
     open var fileStatus: FileStatus? = null
 
     @Column(name = "file_size")

@@ -33,6 +33,7 @@ open class FileChunkUploadInfo {
     @NotNull
     @ColumnDefault("PENDING")
     @Lob
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "chunk_status", nullable = false)
     open var chunkStatus: ChunkStatus? = null
 

@@ -27,7 +27,7 @@ import java.util.concurrent.CompletableFuture
 import java.util.stream.Collectors
 
 @Component
-class MinioHelper(val minioTemplate: MinioTemplate,val minioConfigure: MinioConfigure) {
+class MinioHelper(val minioTemplate: MinioTemplate, val minioConfigure: MinioConfigure) {
     private val log = KotlinLogging.logger {}
     fun createBuketName() {
         try {
@@ -39,19 +39,19 @@ class MinioHelper(val minioTemplate: MinioTemplate,val minioConfigure: MinioConf
             log.error { "createBuketName失败：$e" }
             throw RuntimeException("createBuketName失败：" + e.message)
         } catch (e: InvalidKeyException) {
-            log.error("createBuketName失败：$e")
+            log.error { "createBuketName失败：$e" }
             throw RuntimeException("createBuketName失败：" + e.message)
         } catch (e: NoSuchAlgorithmException) {
-            log.error("createBuketName失败：$e")
+            log.error { "createBuketName失败：$e" }
             throw RuntimeException("createBuketName失败：" + e.message)
         } catch (e: XmlParserException) {
-            log.error("createBuketName失败：$e")
+            log.error { "createBuketName失败：$e" }
             throw RuntimeException("createBuketName失败：" + e.message)
         } catch (e: InsufficientDataException) {
-            log.error("createBuketName失败：$e")
+            log.error { "createBuketName失败：$e" }
             throw RuntimeException("createBuketName失败：" + e.message)
         } catch (e: InternalException) {
-            log.error("createBuketName失败：$e")
+            log.error { "createBuketName失败：$e" }
             throw RuntimeException("createBuketName失败：" + e.message)
         }
     }
@@ -67,7 +67,7 @@ class MinioHelper(val minioTemplate: MinioTemplate,val minioConfigure: MinioConf
         try {
             result = minioTemplate.getObjectUrl(minioConfigure.bucketName, objectName)
         } catch (e: Exception) {
-            log.error("获取外链失败：$e")
+            log.error { "获取外链失败：$e" }
             throw RuntimeException("获取外链失败：" + e.message)
         }
         return result
@@ -84,7 +84,7 @@ class MinioHelper(val minioTemplate: MinioTemplate,val minioConfigure: MinioConf
         try {
             result = minioTemplate.getObjectUrl(minioConfigure.bucketName, objectName, minioConfigure.expires)
         } catch (e: Exception) {
-            log.error("获取外链失败：$e")
+            log.error { "获取外链失败：$e" }
             throw RuntimeException("获取外链失败：" + e.message)
         }
         return result
@@ -131,7 +131,7 @@ class MinioHelper(val minioTemplate: MinioTemplate,val minioConfigure: MinioConf
                 }
             }
         } catch (e: Exception) {
-            log.error("获取外链失败：$e")
+            log.error { "获取外链失败：$e" }
             throw RuntimeException("获取外链失败：" + e.message)
         }
         return targetPath.toString()
@@ -150,7 +150,7 @@ class MinioHelper(val minioTemplate: MinioTemplate,val minioConfigure: MinioConf
                 IoUtil.copy(response, res.outputStream)
             }
         } catch (e: Exception) {
-            log.error("获取外链失败：" + e.message)
+            log.error { "获取外链失败：" + e.message }
             throw RuntimeException("获取外链失败：" + e.message)
         }
     }
@@ -175,7 +175,7 @@ class MinioHelper(val minioTemplate: MinioTemplate,val minioConfigure: MinioConf
                 null
             )
         } catch (e: Exception) {
-            log.error("initMultiPartUpload Error:$e")
+            log.error { "initMultiPartUpload Error:$e" }
             return null
         }
         return uploadId
@@ -192,7 +192,7 @@ class MinioHelper(val minioTemplate: MinioTemplate,val minioConfigure: MinioConf
                 minioConfigure.expires, paramsMap
             )
         } catch (e: Exception) {
-            log.error("preSignedObjectUrl Error:$e")
+            log.error { "preSignedObjectUrl Error:$e" }
             throw RuntimeException("获取外链失败：" + e.message)
         }
         return uploadUrl
@@ -225,17 +225,15 @@ class MinioHelper(val minioTemplate: MinioTemplate,val minioConfigure: MinioConf
      * @param uploadId   uploadId
      * @return String
      */
-    fun mergeMultiPartUpload(objectName: String, uploadId: String): String {
+    fun mergeMultiPartUpload(objectName: String, uploadId: String): String? {
         val parts = arrayOfNulls<Part>(1000)
-        var partIndex = 0
         val partsResponse = listUploadPartsBase(objectName, uploadId)
         if (null == partsResponse) {
             log.error { "查询文件分片列表为空" }
             throw RuntimeException("分片列表为空")
         }
-        for (partItem in partsResponse.result().partList()) {
+        for ((partIndex, partItem) in partsResponse.result().partList().withIndex()) {
             parts[partIndex] = Part(partIndex + 1, partItem.etag())
-            partIndex++
         }
         val objectWriteResponse: ObjectWriteResponse
         try {
@@ -249,12 +247,8 @@ class MinioHelper(val minioTemplate: MinioTemplate,val minioConfigure: MinioConf
                 null
             )
         } catch (e: Exception) {
-            log.error("分片合并失败：$e")
+            log.error { "分片合并失败：$e" }
             throw RuntimeException("分片合并失败：" + e.message)
-        }
-        if (null == objectWriteResponse) {
-            log.error("合并失败，合并结果为空")
-            throw RuntimeException("分片合并失败")
         }
         return objectWriteResponse.region()
     }
@@ -311,7 +305,7 @@ class MinioHelper(val minioTemplate: MinioTemplate,val minioConfigure: MinioConf
                 null
             )
         } catch (e: Exception) {
-            log.error("查询文件分片列表错误：{}，uploadId:{}", e, uploadId)
+            log.error { "查询文件分片列表错误：$e，uploadId: $uploadId" }
             return null
         }
         return partsResponse
@@ -321,7 +315,7 @@ class MinioHelper(val minioTemplate: MinioTemplate,val minioConfigure: MinioConf
         try {
             return minioTemplate.statObject(minioConfigure.bucketName, null, objectName).get()
         } catch (e: Exception) {
-            log.error("获取StatObjectResponse报错：{}，objectName:{}", e, objectName)
+            log.error { "获取StatObjectResponse报错：$e，objectName:$objectName" }
             return null
         }
     }

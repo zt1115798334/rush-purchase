@@ -40,3 +40,32 @@ create table t_user_log
     response text                               null comment '返回值'
 ) comment '用户日志表';
 
+
+drop table if exists t_file_upload_info;
+create table t_file_upload_info
+(
+    id              bigint auto_increment primary key,
+    file_name       varchar(255)                                not null comment '文件名称',
+    minio_file_name varchar(255)                                not null comment 'minio文件名称',
+    file_md5        varchar(255)                                not null comment '文件md5',
+    file_path       varchar(255)                                not null comment '文件路径',
+    file_status     enum ('UN_UPLOADED','UPLOADED','UPLOADING') not null comment '文件状态',
+    file_size       bigint                                      null comment '文件大小',
+    upload_id       varchar(255)                                null comment '上传id',
+    total_chunk     int(0)                                      not null comment '总块数',
+    created_time    datetime default CURRENT_TIMESTAMP          not null comment '创建时间',
+    updated_time    datetime default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP comment '更新时间'
+) comment '文件上传信息表';
+
+drop table if exists t_file_chunk_upload_info;
+create table t_file_chunk_upload_info
+(
+    id           bigint auto_increment primary key,
+    file_md5     varchar(255)                                                                      not null comment '文件md5',
+    chunk_number int(0)                                                                            not null comment '块数',
+    upload_id    varchar(255)                                                                      not null comment '上传id',
+    chunk_status enum ('PENDING','COMPLETE') default 'PENDING'                                     not null comment '块状态',
+    created_time datetime                    default CURRENT_TIMESTAMP                             not null comment '创建时间',
+    updated_time datetime                    default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP null comment '更新时间'
+) comment '文件上传块表';
+

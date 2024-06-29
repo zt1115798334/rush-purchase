@@ -15,11 +15,11 @@ interface FileService {
 
     fun directUploadFile(multipartFile: MultipartFile):FileUploadInfo
 
-    fun uploadFile(uploadInfoParam: UploadInfoParam):UploadInfo
+    fun uploadFile(uploadInfoParam: UploadInfoParam):UploadInfo?
 
     fun uploadFileChunk(multipartFile: MultipartFile, uploadId: String, chunkNumber: Int)
 
-    fun mergeMultipartUpload(param: MergeMultipartParam)
+    fun mergeMultipartUpload(param: MergeMultipartParam):FileOperationResult
 
     fun downloadFile(fileId: Long, request: HttpServletRequest, response: HttpServletResponse)
 

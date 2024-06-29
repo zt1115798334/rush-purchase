@@ -1,12 +1,12 @@
 package org.example.rushpurchase.minio
 
 data class MinioConfigure(
-    val prefix: String = MinioConstant.PREFIX,
-    val endpoint: String? = null,
-    val accessKey: String? = null,
-    val secretKey: String? = null,
-    val bucketName: String? = null,
-    val expires: Int? = null
+    var prefix: String = MinioConstant.PREFIX,
+    var endpoint: String? = null,
+    var accessKey: String? = null,
+    var secretKey: String? = null,
+    var bucketName: String? = null,
+    var expires: Int? = null
 
 )
 

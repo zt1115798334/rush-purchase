@@ -46,3 +46,12 @@ custom:
     third-error-account-error-count: 15 #???????? ????
     private-key: MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBALFacf+X6Eddsv/hLS15gFzIysMp5kz8XqIlcwASmLlOmbSqMkZd5euQtdkbRVJ3NF6RqnXqrDXOxB7whRKKmCawbDniSPeqDJkHEVUZSm5AaPhTgJpDwK+H5s/YANExHQwyl8v8FHtcMLjSWPDbI4ijipI/J/75jNoa99hd8S/hAgMBAAECgYACcVafrsFJWpmflWu7iCRp3r5/cjZCvCD+7GtvWko4BuyGOugB7OsYz8mn6KSngWafWPP1P2D9ZZxxGUapb/8PByROsY50IWREYpaq+p610xFZQOckFoWnVY3HWyt1NNAtXIeDE3YxUzVYnSmqPsazPDcmWcKpMcEP+ipyFxuLQQJBAP+wlClbecC2vhLakR8FJV35bR1JPEB5KoT8dDAQAN+TnW0PhcVLwu0qngN49PaBFYHonTr44xN/bGTFqLQt8qECQQCxkYi1fdSY72T/GZ1VkK2Q6VnGaErHXF66QyBIDess7CiHcMIWRS/lWtRkJEeY9lvdM13upzY6MXzI1qi2g3VBAkBZ37t0fg7hylotTl5MRQbJbW8JKEDheLWVYReF/VoRPFXNi/M9UlAGBUDdf5q7OsxQiW8a13kZ1WRIV6HhE3WBAkApXiJfReVVi9AXrjv9RytoazTDCGEDeP2In0LSBowXdx0qEJbm4U97O2Hnwpv7gsl8Cw+DHemAPS85CulbO90BAkEAs79YTAcFOC8KRQ7CoDWzW+L4towIoh8p7WdWgyhU+RClFLCe4K+2w0TPZkcw5oKNzQqcaWH865tugQ+phHpmOg==
     public-key: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCxWnH/l+hHXbL/4S0teYBcyMrDKeZM/F6iJXMAEpi5Tpm0qjJGXeXrkLXZG0VSdzRekap16qw1zsQe8IUSipgmsGw54kj3qgyZBxFVGUpuQGj4U4CaQ8Cvh+bP2ADRMR0MMpfL/BR7XDC40ljw2yOIo4qSPyf++YzaGvfYXfEv4QIDAQAB
+
+org:
+  zt:
+    minio:
+      endpoint: http://127.0.0.1:9000
+      access-key: minioadmin
+      secret-key: minioadmin
+      bucket-name: file
+      expires: 86400
