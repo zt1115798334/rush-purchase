@@ -1,9 +1,10 @@
 plugins {
-    id("org.springframework.boot") version "3.3.1"
-    id("io.spring.dependency-management") version "1.1.5"
-    kotlin("kapt") version "1.9.24"
-    kotlin("jvm") version "1.9.24"
-    kotlin("plugin.spring") version "1.9.24"
+    alias(libs.plugins.spring.boot.library)
+    alias(libs.plugins.dependency.management.library)
+    alias(libs.plugins.kotlin.jvm.library)
+    alias(libs.plugins.kotlin.kapt.library)
+    alias(libs.plugins.kotlin.plugin.spring.library)
+
 }
 
 group = "org.example"
@@ -35,8 +36,12 @@ dependencies {
 
 
     implementation(libs.minio.library)
+    {
+        exclude("com.google.guava", "guava")
+    }
     implementation(libs.hutool.all.library)
     implementation(libs.fastjson.library)
+    implementation(libs.guava.library)
     implementation(libs.mapstruct.library)
     kapt(libs.mapstruct.processor.library)
     kaptTest(libs.mapstruct.processor.library)
@@ -61,7 +66,9 @@ dependencies {
         exclude("org.apache.shiro", "shiro-web")
     }
     implementation(libs.shiro.redis.library)
-
+    {
+        exclude("com.google.guava", "guava")
+    }
     kapt(
         variantOf(libs.querydsl.apt.library) { classifier("jakarta") },
     )
