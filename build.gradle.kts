@@ -1,10 +1,17 @@
-plugins {
-    alias(libs.plugins.spring.boot.library)
-    alias(libs.plugins.dependency.management.library)
-    alias(libs.plugins.kotlin.jvm.library)
-    alias(libs.plugins.kotlin.kapt.library)
-    alias(libs.plugins.kotlin.plugin.spring.library)
+import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 
+plugins {
+//    alias(libs.plugins.spring.boot.library)
+//    alias(libs.plugins.dependency.management.library)
+//    alias(libs.plugins.kotlin.jvm.library)
+//    alias(libs.plugins.kotlin.kapt.library)
+//    alias(libs.plugins.kotlin.plugin.spring.library)
+
+    id("org.springframework.boot") version "3.3.1"
+    id("io.spring.dependency-management") version "1.1.5"
+    kotlin("jvm") version "1.9.24"
+    kotlin("kapt") version "1.9.24"
+    kotlin("plugin.spring") version "1.9.24"
 }
 
 group = "org.example"
@@ -68,6 +75,7 @@ dependencies {
     implementation(libs.shiro.redis.library)
     {
         exclude("com.google.guava", "guava")
+        exclude("com.google.collections", "google-collections")
     }
     kapt(
         variantOf(libs.querydsl.apt.library) { classifier("jakarta") },
@@ -101,5 +109,21 @@ kapt {
         // https://mapstruct.org/documentation/stable/reference/html/#configuration-options
         // 注入spring 容器
         arg("mapstruct.defaultComponentModel", "spring")
+    }
+}
+
+tasks.getByName<BootBuildImage>("bootBuildImage") {
+    imageName = "registry.cn-hangzhou.aliyuncs.com/zt_images/${project.name}:latest"
+    builder = "paketobuildpacks/builder-jammy-full"
+    publish = true //是否发布
+    environment = mapOf("TZ" to "Asia/Shanghai", "LANG" to "en_US.UTF-8")
+    docker {
+        host = "tcp://127.0.0.1:2375"
+        tlsVerify = false
+        publishRegistry {
+            username = "zt1115798334"
+            password = "devil9498"
+            url = "https://registry.cn-hangzhou.aliyuncs.com"
+        }
     }
 }
