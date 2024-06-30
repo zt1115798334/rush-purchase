@@ -4,7 +4,8 @@ import jakarta.servlet.http.HttpServletRequest
 
 object NetworkUtil {
 
-    private fun isNotIP(ip: String?): Boolean = ip != null || "unknown".equals(ip, ignoreCase = true)
+    private fun isNotIP(ip: String?): Boolean =
+        ip.let { "unknown".equals(it, ignoreCase = true) }
 
     fun getLocalIp(servletRequest: HttpServletRequest): String {
         var first = listOf(

@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
 import org.example.rushpurchase.enums.FileStatus
 import org.hibernate.annotations.ColumnDefault
-import java.time.Instant
 import java.time.LocalDateTime
 
 @Entity

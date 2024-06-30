@@ -1,4 +1,4 @@
-package org.example.rushpurchase.mysql.repo;
+package org.example.rushpurchase.mysql.repo
 
 import org.example.rushpurchase.mysql.entity.FileUploadInfo
 import org.springframework.data.jpa.repository.JpaRepository

@@ -1,9 +1,7 @@
 package org.example.rushpurchase.mysql.entity
 
 import jakarta.persistence.*
-import org.example.rushpurchase.enums.DeleteState
 import org.hibernate.annotations.ColumnDefault
-import java.time.Instant
 import java.time.LocalDateTime
 
 @Entity

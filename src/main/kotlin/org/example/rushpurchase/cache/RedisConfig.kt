@@ -75,7 +75,7 @@ class RedisConfig {
         return RedisCacheManager(
             RedisCacheWriter.nonLockingRedisCacheWriter(factory!!),
             this.getRedisCacheConfigurationWithTtl(6000, objectMapper!!),  // 默认策略，未配置的 key 会使用这个
-            this.getRedisCacheConfigurationMap(objectMapper!!) // 指定 key 策略
+            this.getRedisCacheConfigurationMap(objectMapper) // 指定 key 策略
         )
     }
 

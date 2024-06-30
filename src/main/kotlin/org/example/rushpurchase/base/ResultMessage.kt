@@ -43,15 +43,6 @@ data class ResultMessage(
             return ScrollData(scrollId, list)
         }
 
-        fun createData(obj: Any): ResultMessage {
-            return if (JSON.toJSON(obj) is JSONObject) {
-                ResultMessage(obj = obj as JSONObject)
-            } else if (JSON.toJSON(obj) is JSONArray) {
-                ResultMessage(list = obj as JSONArray)
-            } else {
-                ResultMessage(value = obj.toString())
-            }
-        }
 
         fun successMeta(): Meta = Meta(true, SystemStatusCode.SUCCESS.code, LocalDateTime.now(), StrUtil.EMPTY)
 

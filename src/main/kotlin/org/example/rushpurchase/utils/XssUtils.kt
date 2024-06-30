@@ -75,7 +75,7 @@ object XssUtils {
         return rlt
     }
 
-    fun stripSqlInjection(value: String?): String {
+    private fun stripSqlInjection(value: String?): String {
         val vle = value!!.replace("|", "")
         val badStr = """
             '|exec|execute|insert|select|delete|update|count|drop|%|chr|mid|master|truncate|

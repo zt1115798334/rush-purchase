@@ -57,8 +57,8 @@ class PasswordRealm(
                         val msg = increment(shiroLoginCountKey, shiroIsLockKey)
                         throw AccountException(msg)
                     }
-                    user.id?.let {
-                        userService.updateLastLoginTime(it)
+                    user.id?.let { uId->
+                        userService.updateLastLoginTime(uId)
                     }
                     stringRedisService.set(shiroLoginCountKey, "0")
                     stringRedisService.delete(shiroIsLockKey)

@@ -45,10 +45,10 @@ object RequestResponseUtil {
     }
 
     fun getParameter(servletRequest: HttpServletRequest, key: String): Any? =
-        RequestResponseUtil.getRequest(servletRequest).getParameter(key)
+        getRequest(servletRequest).getParameter(key)
 
     fun getHeader(servletRequest: HttpServletRequest, key: String): String? =
-        RequestResponseUtil.getRequest(servletRequest).getHeader(key)
+        getRequest(servletRequest).getHeader(key)
 
     private fun getRequest(servletRequest: HttpServletRequest): HttpServletRequest =
         XssHttpServletRequestWrapper(servletRequest)

@@ -12,7 +12,6 @@ import org.example.rushpurchase.mysql.entity.User
 import org.example.rushpurchase.mysql.repo.UserRepository
 import org.example.rushpurchase.service.UserService
 import org.example.rushpurchase.utils.UserUtils
-import org.springframework.data.domain.PageImpl
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 

@@ -87,15 +87,21 @@ class XssHttpServletRequestWrapper(request: HttpServletRequest?) : HttpServletRe
         jsonObject.entries.forEach { mutableEntry ->
             val value = mutableEntry.value
             val key = mutableEntry.key
-            if (value is JSONArray) {
-                val map = value.map {
-                    jsonObjectCleanXSS(it as JSONObject)
+            when (value) {
+                is JSONArray -> {
+                    val map = value.map {
+                        jsonObjectCleanXSS(it as JSONObject)
+                    }
+                    resultObj[key] = map
                 }
-                resultObj[key] = map
-            } else if (value is JSONObject) {
-                jsonObjectCleanXSS(value)
-            } else {
-                resultObj[key] = filterParamString(value as String)
+
+                is JSONObject -> {
+                    jsonObjectCleanXSS(value)
+                }
+
+                else -> {
+                    resultObj[key] = filterParamString(value as String)
+                }
             }
         }
         return resultObj

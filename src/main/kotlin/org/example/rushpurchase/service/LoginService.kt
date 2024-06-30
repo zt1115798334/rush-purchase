@@ -1,6 +1,5 @@
 package org.example.rushpurchase.service
 
-import org.example.rushpurchase.mysql.entity.User
 import org.example.rushpurchase.shiro.token.PasswordToken
 
 interface LoginService {
