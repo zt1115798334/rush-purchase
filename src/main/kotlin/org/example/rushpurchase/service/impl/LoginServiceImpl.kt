@@ -31,13 +31,19 @@ class LoginServiceImpl(val stringRedisService: StringRedisService) : LoginServic
         return accessToken
     }
 
-    override fun logout(userId: Long?, ip: String) {
+    override fun logout(userId: Long?,  ip: String) {
         val ipLong = Ipv4Util.ipv4ToLong(ip)
-        userId?.let { CacheKeys.jwtAccessTokenKey(it, ipLong) }
-            ?.let { stringRedisService.delete(it) }
 
-        userId?.let { CacheKeys.jwtRefreshTokenKey(it, ipLong) }
-            ?.let { stringRedisService.delete(it) }
+        userId?.let {
+            CacheKeys.jwtAccessTokenKey(it, ipLong).let { key ->
+                stringRedisService.delete(key)
+            }
+            CacheKeys.jwtRefreshTokenKey(it, ipLong).let { key ->
+                stringRedisService.delete(key)
+            }
+
+        }
+
         SecurityUtils.getSubject().logout()
     }
 }

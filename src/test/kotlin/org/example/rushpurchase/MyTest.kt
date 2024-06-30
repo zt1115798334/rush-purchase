@@ -53,9 +53,11 @@ class MyTest {
     fun getVerifyPassword() {
         val account = "admin"
         val password = "123456"
-        val salt = "9OSGNBM9WS"
-        val pwd = "578d979f5571eed96e0ec077802a03e88c41cebe2ce8b80efbd30effc33dae3b"
+        val salt = "Q7YEPCGUND"
+//        13975eaffad8cdde35ae9f5cecf85721741d6d5b1bf328dd1472dbe6371222f7
+        val pwd = "22da256a40da2a52b9bfc068b41995159fb22bc5a0c601419a540aad3e5d7968"
         println(UserUtils.getVerifyPassword(account, password, salt, pwd))
+        println(UserUtils.getEncryptPassword(account, password, salt))
 
     }
 

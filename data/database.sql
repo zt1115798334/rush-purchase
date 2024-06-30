@@ -21,23 +21,24 @@ create table t_user
 
 INSERT INTO t_user (id, account, password, salt, user_name, phone,
                     created_time, updated_time, last_login_time, delete_state)
-VALUES (1, 'admin', 'd75646ba3433331fbf8b4fb3b11066e9d313bb138de904b49ac294e695553516', 'P275Y2MY28',
-        'test', '15130097582', '2021-09-13 17:32:25', null, null, 'UN_DELETE');
+VALUES (1, 'admin', 'd179cc2fff5e46605ac8a40d86e3fef419334b1035ac4cae230a73a9ce273521', 'P5L0SUPSFP',
+        '超级管理', '15130097582', '2021-09-13 17:32:25', null, null, 'UN_DELETE');
 
 drop table if exists t_user_log;
 create table t_user_log
 (
-    id       bigint auto_increment
+    id             bigint auto_increment
         primary key,
-    user_id  bigint                             null comment '用户id',
-    name     varchar(255)                       null comment '名字',
-    type     varchar(255)                       null comment '类型',
-    content  text                               null comment '内容',
-    ip       varchar(20)                        null comment 'ip',
-    time     datetime default CURRENT_TIMESTAMP null comment '时间',
-    classify varchar(255)                       null comment '类路径',
-    fun      varchar(255)                       null comment '方法',
-    response text                               null comment '返回值'
+    user_id        bigint                             null comment '用户id',
+    name           varchar(255)                       null comment '名字',
+    type           varchar(255)                       null comment '类型',
+    content        text                               null comment '内容',
+    ip             varchar(20)                        null comment 'ip',
+    created_time   datetime default CURRENT_TIMESTAMP null comment '时间',
+    classify       varchar(255)                       null comment '类路径',
+    func           varchar(255)                       null comment '方法',
+    resp           text                               null comment '返回值',
+    time_consuming bigint                             null comment '耗时'
 ) comment '用户日志表';
 
 

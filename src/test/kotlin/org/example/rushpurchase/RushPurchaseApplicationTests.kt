@@ -8,6 +8,9 @@ import org.example.rushpurchase.utils.RSAUtils
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import java.net.URLDecoder
+import java.net.URLEncoder
+import java.nio.charset.Charset
 
 @SpringBootTest
 class RushPurchaseApplicationTests(@Autowired val accountProperties: AccountProperties) {
@@ -26,6 +29,7 @@ class RushPurchaseApplicationTests(@Autowired val accountProperties: AccountProp
         println(EscapeUtil.unescape(encryptByPublicKey))
         println(URLUtil.encode(encryptByPublicKey))
         println(URLUtil.decode(encryptByPublicKey))
+        println(URLEncoder.encode(encryptByPublicKey, Charset.defaultCharset()))
     }
 
 }
