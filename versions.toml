@@ -8,12 +8,14 @@ fastjson_version = "2.0.51"
 guava_version = "33.2.1-jre"
 mapstruct_version = "1.5.5.Final"
 commons_compress_version = "1.26.0"
+poi_version = "5.2.3"
+minio_version = "8.5.11"
+redisson_version = "3.32.0"
 
 kotlin_logging_version = "6.0.9"
 kotlinx_datetime_version = "0.6.0"
 kotlinx_serialization_json_version = "1.7.0"
 query_dsl_version = "5.0.0"
-minio_version = "8.5.11"
 blaze_persistence_version = "1.6.11"
 jakarta_persistence_api_version = "3.1.0"
 shiro_version = "2.0.1"
@@ -36,7 +38,12 @@ guava_library = { module = "com.google.guava:guava", version.ref = "guava_versio
 mapstruct_library = { module = "org.mapstruct:mapstruct", version.ref = "mapstruct_version" }
 mapstruct_processor_library = { module = "org.mapstruct:mapstruct-processor", version.ref = "mapstruct_version" }
 commons_compress_library = { module = "org.apache.commons:commons-compress", version.ref = "commons_compress_version" }
+poi_library = { module = "org.apache.poi:poi", version.ref = "poi_version" }
+poi_ooxml_library = { module = "org.apache.poi:poi-ooxml", version.ref = "poi_version" }
+poi_scratchpad_library = { module = "org.apache.poi:poi-scratchpad", version.ref = "poi_version" }
+poi_ooxml_full_library = { module = "org.apache.poi:poi-ooxml-full", version.ref = "poi_version" }
 minio_library = { module = "io.minio:minio", version.ref = "minio_version" }
+redisson_spring_boot_starter_library = { module = "org.redisson:redisson-spring-boot-starter", version.ref = "redisson_version" }
 
 kotlin_logging_library = { module = "io.github.oshai:kotlin-logging", version.ref = "kotlin_logging_version" }
 kotlinx_datetime_library = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx_datetime_version" }

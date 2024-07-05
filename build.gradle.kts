@@ -42,10 +42,7 @@ dependencies {
     implementation(libs.springdoc.openapi.starter.webmvc.api.library)
 
 
-    implementation(libs.minio.library)
-    {
-        exclude("com.google.guava", "guava")
-    }
+
     implementation(libs.hutool.all.library)
     implementation(libs.fastjson.library)
     implementation(libs.guava.library)
@@ -53,6 +50,17 @@ dependencies {
     kapt(libs.mapstruct.processor.library)
     kaptTest(libs.mapstruct.processor.library)
     implementation(libs.commons.compress.library)
+    implementation(libs.poi.library)
+    implementation(libs.poi.ooxml.library)
+    implementation(libs.poi.scratchpad.library)
+    implementation(libs.poi.ooxml.full.library)
+    implementation(libs.minio.library)
+    {
+        exclude("com.google.guava", "guava")
+    }
+
+    implementation(libs.redisson.spring.boot.starter.library)
+
     implementation(libs.kotlin.logging.library)
     implementation(libs.kotlinx.datetime.library)
     implementation(libs.kotlinx.serialization.json.library)
@@ -112,17 +120,18 @@ kapt {
     }
 }
 
+val env: MutableMap<String, String> = System.getenv()
 tasks.getByName<BootBuildImage>("bootBuildImage") {
     imageName = "registry.cn-hangzhou.aliyuncs.com/zt_images/${project.name}:latest"
     builder = "paketobuildpacks/builder-jammy-full"
     publish = true //是否发布
     environment = mapOf("TZ" to "Asia/Shanghai", "LANG" to "en_US.UTF-8")
     docker {
-        host = "tcp://127.0.0.1:2375"
+//        host = "tcp://127.0.0.1:2375"
         tlsVerify = false
         publishRegistry {
-            username = "zt1115798334"
-            password = "devil9498"
+            username = env["ZT-DOCKER-USERNAME"]
+            password = env["ZT-DOCKER-PASSWORD"]
             url = "https://registry.cn-hangzhou.aliyuncs.com"
         }
     }
