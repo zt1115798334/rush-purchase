@@ -10,8 +10,8 @@ import org.example.rushpurchase.dto.mapper.FileUploadInfoMapper
 import org.example.rushpurchase.service.FileService
 import org.example.rushpurchase.service.impl.MergeMultipartParam
 import org.example.rushpurchase.service.impl.UploadInfoParam
-import org.simpleframework.xml.core.Validate
 import org.springframework.http.MediaType
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
 
@@ -44,7 +44,7 @@ class FileController(val fileService: FileService, val fileUploadInfoMapper: Fil
         consumes = [MediaType.APPLICATION_JSON_VALUE],
         produces = [MediaType.APPLICATION_JSON_VALUE]
     )
-    fun uploadFile(@Validate @RequestBody param: UploadInfoParam): ResultMessage {
+    fun uploadFile(@Validated @RequestBody param: UploadInfoParam): ResultMessage {
         val minioUploadId = fileService.uploadFile(param)
         return minioUploadId?.let { success(it) } ?: failure("上传文件错误")
     }
